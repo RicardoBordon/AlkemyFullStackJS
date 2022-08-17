@@ -1,0 +1,37 @@
+{
+  "name": "alkemy-front",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "@headlessui/react": "^1.6.6",
+    "@heroicons/react": "^1.0.6",
+    "@mui/icons-material": "^5.8.4",
+    "@mui/material": "^5.9.3",
+    "@mui/x-date-pickers": "^5.0.0-beta.5",
+    "axios": "^0.27.2",
+    "bootstrap": "^5.2.0",
+    "date-fns": "^2.29.1",
+    "moment": "^2.29.4",
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.5.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "sweetalert2": "^11.4.26",
+    "tailwindcss": "^3.1.8",
+    "universal-cookie": "^4.0.4"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.0",
+    "vite": "^3.0.0"
+  }
+}
