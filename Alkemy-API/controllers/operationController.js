@@ -5,34 +5,32 @@ const createOperation = async (req, res) => {
     
     try {
         const { concepto, monto, fecha, tipo, id_users } = req.body;
-        console.log(req.body)
         const result = await db.query(
             'INSERT INTO operations (concepto, monto, fecha, tipo, id_users) VALUES ($1, $2, $3, $4, $5)',
             [concepto, monto, fecha, tipo, id_users]
             );
         return res.json(result.command);
     } catch (error) {
-
         return res.json("error"+ error);
     }
 }
 
 const readAllOperation = async (req, res) => {
     const {id_users} = req.body;
-    let total = parseFloat(0.00);
+    let total = parseFloat(0);
     try {
         const result = await db.query(
             'SELECT * FROM operations WHERE id_users = ($1)', [id_users]
             );
             result.rows.forEach(function(e){
-                if(e.tipo === "income"){
+                if(e.tipo === "INCOME"){
                     total += parseFloat(e.monto);
                 }
-                 else if(e.tipo === "outflow"){
+                 else if(e.tipo === "OUTFLOW"){
                     total -= parseFloat(e.monto);
                 }
             })
-            return res.status(200).json([result.rows, {"balance": total}])  
+            return res.status(200).json([result.rows, {"balance": total.toFixed(2)}])  
     } catch (error) {
         return res.json("error"+ error);
     }
@@ -95,10 +93,10 @@ const balance = async (req, res) => {
             );
 
         read.rows.forEach(function(e){
-            if(e.tipo === "income"){
+            if(e.tipo === "INCOME"){
                 total += parseFloat(e.monto);
             }
-             else if(e.tipo === "outflow"){
+             else if(e.tipo === "OUTFLOW"){
                 total -= parseFloat(e.monto);
             }
         })
