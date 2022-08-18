@@ -52,7 +52,6 @@ export default ListM;
 
 export const Title = () => {
   const url = window.location.pathname;
-  console.log(url);
   return( 
     <>
   {url === "/home" ? (

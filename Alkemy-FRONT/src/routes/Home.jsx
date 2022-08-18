@@ -9,7 +9,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Cookies from "universal-cookie";
-import { Button } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import NavBar from "../components/NavBar";
 import axios from "axios";
 
@@ -19,7 +19,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     color: theme.palette.common.white,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 17,
+    fontSize: 16,
   },
 }));
 
@@ -46,7 +46,6 @@ function Home() {
       data: { "id_users":cookies.get("id") },
     })
     .then(function (response) {
-      console.log(response.data[0]);
       setData(response.data[0])
       setBal(response.data[1])
     }, [])
@@ -64,10 +63,10 @@ function Home() {
       <Table sx={{ minWidth: 400 }} aria-label="customized table">
         <TableHead>
           <TableRow>
-            <StyledTableCell>Concept</StyledTableCell>
-            <StyledTableCell align="center">Amount</StyledTableCell>
-            <StyledTableCell align="center">Date</StyledTableCell>
-            <StyledTableCell align="center">Type</StyledTableCell>
+            <StyledTableCell align="center">CONCEPT</StyledTableCell>
+            <StyledTableCell align="center">AMOUNT</StyledTableCell>
+            <StyledTableCell align="center">DATE</StyledTableCell>
+            <StyledTableCell align="center">TYPE</StyledTableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -76,26 +75,33 @@ function Home() {
             <StyledTableRow 
               key={row.id_operation}
             >
-              <StyledTableCell component="th" scope="row">
+              <StyledTableCell align="center" component="th" scope="row">
                 {row.concepto}
-              </StyledTableCell>
+              </StyledTableCell >
               {row.tipo == "outflow"
               ? <StyledTableCell align="center" sx={{color: "red"}}>$  -{row.monto}</StyledTableCell>
               : <StyledTableCell align="center">$  {row.monto}</StyledTableCell> } 
               
               <StyledTableCell align="center">{row.fecha.split("T03:00:00.000Z",)}</StyledTableCell>
-              <StyledTableCell align="center">{row.tipo}</StyledTableCell>
+
+              {row.tipo == "outflow"
+              ? <StyledTableCell align="center" sx={{color: "red"}}>{row.tipo}</StyledTableCell>
+              : <StyledTableCell align="center" sx={{color: "blue"}}>{row.tipo}</StyledTableCell> } 
               
             </StyledTableRow >
           ))}
 
           <StyledTableRow >
-          <StyledTableCell colSpan={1}>Total Balance:</StyledTableCell>
-          <StyledTableCell colSpan={2} align="center" sx={{color: "yellow", bgcolor:"black"}}>$ {bal.balance}</StyledTableCell>
+          
+          
           </StyledTableRow >
           </TableBody>
           </Table>
           </TableContainer>
+          <Paper elevation={10} sx={{m:5,mt:8 , color:"white", bgcolor:"black", width:"300px" }}>
+          <TableCell><Typography gutterBottom={true} variant="button" >Total Balance:</Typography></TableCell>
+          <TableCell align="center"  sx={{color: "yellow", bgcolor:"black" }}><Typography gutterBottom={true} variant="h6" >$ {bal.balance}</Typography></TableCell>
+          </Paper>
   </>
   )
 }

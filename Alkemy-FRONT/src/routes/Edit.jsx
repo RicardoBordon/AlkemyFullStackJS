@@ -98,11 +98,11 @@ const Edit = () => {
   
   return (
     <>
-      <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
+      <Container component="main" maxWidth="md" sx={{ mb: 2 }}>
         <Paper
           elevation={24}
           variant="elevation"
-          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+          sx={{ my: { xs: 3, md: 3 }, p: { xs: 1, md: 2 } }}
         >
           <Grid container spacing={5}>
             <Grid item xs={12} md={12} lg={12} sx={{ ml: 5, mt: 2, mb: 5 }}>
@@ -117,7 +117,6 @@ const Edit = () => {
                       textAlign: "center",
                       fontSize: "30px",
                       mb: "65px",
-                      color: "red",
                       border: 2,
                       p:2,
                       color: "#A11414",
@@ -154,7 +153,6 @@ const Edit = () => {
                 </InputLabel>
                 <OutlinedInput
                   name="concept"
-                  // value={data.concepto}
                   value={concept}
                   variant="filled"
                   onChange={handleChangeConcept}

@@ -57,8 +57,6 @@ const Add = () => {
       id_users: cookies.get("id"),
     };
 
-    console.log(data)
-
     await axios({
       baseURL: base,
       url: "createOperation",
@@ -67,7 +65,6 @@ const Add = () => {
       withCredentials: false,
     })
       .then(function (response) {
-          console.log(response)
            window.location.href = "/";
         
       }, [])
