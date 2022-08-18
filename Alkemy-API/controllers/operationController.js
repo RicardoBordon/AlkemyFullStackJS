@@ -12,14 +12,14 @@ const createOperation = async (req, res) => {
             );
         return res.json(result.command);
     } catch (error) {
-        console.log(error)
+
         return res.json("error"+ error);
     }
 }
 
 const readAllOperation = async (req, res) => {
     const {id_users} = req.body;
-    let total = parseFloat(0);
+    let total = parseFloat(0.00);
     try {
         const result = await db.query(
             'SELECT * FROM operations WHERE id_users = ($1)', [id_users]
@@ -34,7 +34,6 @@ const readAllOperation = async (req, res) => {
             })
             return res.status(200).json([result.rows, {"balance": total}])  
     } catch (error) {
-        console.log(error)
         return res.json("error"+ error);
     }
 }
@@ -66,14 +65,12 @@ const updateOperation = async (req, res) => {
             if(concepto === "undefined") concepto = read.rows[0].concepto;
             if(monto == "undefined") monto = read.rows[0].monto;
             if(fecha == "Invalid Date") fecha = read.rows[0].fecha;   
-            console.log(fecha, concepto, monto)
         const result = await db.query(
             'UPDATE operations SET concepto = $1, monto = $2, fecha = $3 WHERE id_users = $4 AND id_operation = $5',
             [concepto, monto, fecha, id_users, id_operation]
             );
         return res.status(200).json(result.command);
     } catch (error) {
-        console.log(error)
         return res.status(400).json(error);
     }
 }
@@ -85,7 +82,6 @@ const deleteOperation = async (req, res) => {
             'DELETE FROM operations WHERE id_users = $1 AND id_operation = $2', [id_users, id_operation]);
             return res.json(result.command);
     } catch (error) {
-        console.log(error)
         return res.json("error"+ error);
     }
 }
@@ -106,7 +102,7 @@ const balance = async (req, res) => {
                 total -= parseFloat(e.monto);
             }
         })
-        return res.status(200).json([read.rows, {"balance": total}])        
+        return res.status(200).json([read.rows, {"balance": total.toFixed(2)}])        
                 
     } catch (error) {
         return res.json("error"+ error);
