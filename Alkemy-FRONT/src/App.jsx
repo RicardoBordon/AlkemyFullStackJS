@@ -20,6 +20,7 @@ function App() {
     <Route index element={<Login/>} exact />
     <Route path="/login" element={<Login/>} exact />
     <Route path="/register" element={<Register/>} exact/>
+    <Route path="/*" element={<Login/>}/>
     </Route>
 
     {/* Private */}

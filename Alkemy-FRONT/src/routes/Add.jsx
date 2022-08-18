@@ -49,6 +49,7 @@ const Add = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     let data = new FormData(await event.currentTarget);
+    console.log(date)
     data = {
       concepto: data.get("concept"),
       monto: data.get("amount"),
@@ -62,7 +63,6 @@ const Add = () => {
       url: "createOperation",
       method: "post",
       data: data,
-      withCredentials: false,
     })
       .then(function (response) {
            window.location.href = "/";
@@ -75,17 +75,17 @@ const Add = () => {
 
   return (
     <>
-      <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
+      <Container component="main" maxWidth="md" sx={{ mb: 5 }}>
         <Paper
           elevation={24}
           variant="elevation"
-          sx={{ my: { xs: 1, md: 6 }, p: { xs: 1, md: 3 } }}
+          sx={{ my: { xs: 3, md: 3 }, p: { xs: 1, md: 1 } }}
         >
-          <Grid container spacing={5}>
-            <Grid item xs={12} md={12} lg={12} sx={{ ml: 5, mt: 2, mb: 5 }}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={12} lg={12} sx={{ ml: 5, mt: 3, mb: 5 }}>
               <Box component="form" onSubmit={handleSubmit}>
                 <InputLabel
-                  sx={{ mt: 4, mb: 2, color: "blueviolet" }}
+                  sx={{ mt: 1, color: "blueviolet" }}
                   htmlFor="concept"
                 >
                   Description:{" "}
@@ -98,7 +98,7 @@ const Add = () => {
                 />
 
                 <InputLabel
-                  sx={{ mt: 4, color: "blueviolet" }}
+                  sx={{mt: 4, color: "blueviolet" }}
                   htmlFor="type"
                   id="type"
                 >
@@ -110,11 +110,11 @@ const Add = () => {
                   value={type}
                   onChange={handleChangeType}
                 >
-                  <MenuItem value={"income"}>income</MenuItem>
-                  <MenuItem value={"outflow"}>outflow</MenuItem>
+                  <MenuItem value={"INCOME"}>INCOME</MenuItem>
+                  <MenuItem value={"OUTFLOW"}>OUTFLOW</MenuItem>
                 </Select>
 
-                <InputLabel sx={{ mt: 4, color: "blueviolet" }}>
+                <InputLabel sx={{mt: 4, color: "blueviolet" }}>
                   Date:{" "}
                 </InputLabel>
 
@@ -130,7 +130,7 @@ const Add = () => {
                 </LocalizationProvider>
 
                 <InputLabel
-                  sx={{ mt:2, color: "blueviolet" }}
+                  sx={{mt: 4, color: "blueviolet" }}
                   htmlFor="amount"
                 >
                   Amount:{" "}
@@ -147,12 +147,12 @@ const Add = () => {
                 />
 
                 <Button
-                  sx={{ mt: 8, width: "88%" }}
+                  sx={{ mt: 6, width: "88%" }}
                   variant="contained"
                   color="primary"
                   type="submit"
                 >
-                  Validar Cambios
+                  Validate
                 </Button>
               </Box>
             </Grid>

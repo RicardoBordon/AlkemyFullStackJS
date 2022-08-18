@@ -108,20 +108,19 @@ const Edit = () => {
             <Grid item xs={12} md={12} lg={12} sx={{ ml: 5, mt: 2, mb: 5 }}>
               .
               <Box component="form" onSubmit={handleSubmit}>
-                {tipe == "outflow" ? (
+                {tipe == "OUTFLOW" ? (
                   <Paper
                     variant="contained"
                     square
                     sx={{
                       width: "82%",
                       textAlign: "center",
-                      fontSize: "30px",
-                      mb: "65px",
+                      fontSize: "20px",
+                      fontFamily: "roboto",
                       border: 2,
-                      p:2,
+                      p:1,
                       color: "#A11414",
                       fontWeight: 'bold',
-                      typography: "letter-spacing"
                     }}
                   >
                     {tipe}
@@ -134,14 +133,11 @@ const Edit = () => {
                       width: "82%",
                       textAlign: "center",
                       fontFamily: "roboto",
-                      textAnchor: "30px",
-                      fontSize: "30px",
-                      mb: "65px",
+                      fontSize: "20px",
                       border: 2,
-                      p:2,
+                      p:1,
                       color: "#07A352",
                       fontWeight: 'bold',
-                      xs:3
                     }}
                   >
                     {tipe}
