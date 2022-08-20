@@ -37,7 +37,6 @@ const Add = () => {
   const [date, setDate] = React.useState("");
   const [type, setType] = React.useState("");
   const cookies = new Cookies();
-  const newDate = new Date()
 
   const handleChangeType = (event) => {
     setType(event.target.value);
@@ -85,7 +84,7 @@ const Add = () => {
             <Grid item xs={12} md={12} lg={12} sx={{ ml: 5, mt: 3, mb: 5 }}>
               <Box component="form" onSubmit={handleSubmit}>
                 <InputLabel
-                  sx={{ mt: 1, color: "blueviolet" }}
+                  sx={{ mb: 2, color: "blueviolet" }}
                   htmlFor="concept"
                 >
                   Description:{" "}
@@ -98,14 +97,13 @@ const Add = () => {
                 />
 
                 <InputLabel
-                  sx={{mt: 4, color: "blueviolet" }}
+                  sx={{ mt: 4, mb:2, color: "blueviolet" }}
                   htmlFor="type"
                   id="type"
                 >
                   Operation:{" "}
                 </InputLabel>
                 <Select
-                  sx={{ mt: 2 }}
                   labelId="type"
                   value={type}
                   onChange={handleChangeType}
@@ -114,12 +112,12 @@ const Add = () => {
                   <MenuItem value={"OUTFLOW"}>OUTFLOW</MenuItem>
                 </Select>
 
-                <InputLabel sx={{mt: 4, color: "blueviolet" }}>
+                <InputLabel sx={{mt: 4, mb:2, color: "blueviolet" }}>
                   Date:{" "}
                 </InputLabel>
 
                 <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <Stack spacing={3} sx={{ mt: 4, width: "88%" }}>
+                  <Stack spacing={3} sx={{ width: "88%" }}>
                     <DesktopDatePicker
                       inputFormat="dd/MM/yyyy"
                       value={date}

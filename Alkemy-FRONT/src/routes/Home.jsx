@@ -8,7 +8,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Cookies from "universal-cookie";
-import { Box, Button, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import NavBar from "../components/NavBar";
 import axios from "axios";
 
@@ -27,7 +27,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     backgroundColor: theme.palette.action.hover,
   },
   "&:last-child td, &:last-child th": {
-    border: 0,
+    border: 1,
   },
 }));
 
@@ -72,16 +72,19 @@ function Home() {
                   {row.concepto}
                 </StyledTableCell>
                 {row.tipo == "OUTFLOW" ? (
-                  <StyledTableCell align="center" sx={{ color: "red" }}>
+                  <StyledTableCell
+                    align="center"
+                    sx={{ color: "red", minWidth: "100px" }}
+                  >
                     $ -{row.monto}
                   </StyledTableCell>
                 ) : (
-                  <StyledTableCell align="center">
+                  <StyledTableCell align="center" sx={{ minWidth: "100px" }}>
                     $ {row.monto}
                   </StyledTableCell>
                 )}
 
-                <StyledTableCell align="center">
+                <StyledTableCell align="center" sx={{ minWidth: "100px" }}>
                   {row.fecha.split("T03:00:00.000Z")}
                 </StyledTableCell>
 
@@ -96,26 +99,31 @@ function Home() {
                 )}
               </StyledTableRow>
             ))}
-
-            <StyledTableRow></StyledTableRow>
           </TableBody>
         </Table>
       </TableContainer>
-      <Paper
-        elevation={10}
+      <Table
         sx={{ m: 5, mt: 8, color: "white", bgcolor: "black", width: "300px" }}
       >
-        <TableCell>
-          <Typography gutterBottom={true} variant="button">
-            Total Balance:
-          </Typography>
-        </TableCell>
-        <TableCell align="center" sx={{ color: "yellow", bgcolor: "black" }}>
-          <Typography gutterBottom={true} variant="h6">
-            $ {bal.balance}
-          </Typography>
-        </TableCell>
-      </Paper>
+        <TableHead>
+          <TableRow>
+            <TableCell>
+              <Typography
+                gutterBottom={true}
+                variant="button"
+                sx={{ color: "white" }}
+              >
+                Total Balance:
+              </Typography>
+            </TableCell>
+            <TableCell align="center" sx={{ color: "yellow" }}>
+              <Typography gutterBottom={true} variant="h6">
+                $ {bal.balance}
+              </Typography>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+      </Table>
     </>
   );
 }

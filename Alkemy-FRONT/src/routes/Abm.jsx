@@ -107,15 +107,13 @@ function Abm() {
                 </StyledTableCell>
                 {row.tipo == "OUTFLOW" ? (
                   <StyledTableCell align="center" sx={{ color: "red" }}>
-                    $ -{row.monto}
+                    -{row.monto}
                   </StyledTableCell>
                 ) : (
-                  <StyledTableCell align="center">
-                    $ {row.monto}
-                  </StyledTableCell>
+                  <StyledTableCell align="center">{row.monto}</StyledTableCell>
                 )}
 
-                <StyledTableCell align="center">
+                <StyledTableCell align="center" sx={{ minWidth: "100px" }}>
                   {row.fecha.split("T03:00:00.000Z")}
                 </StyledTableCell>
 
@@ -151,21 +149,28 @@ function Abm() {
           </TableBody>
         </Table>
       </TableContainer>
-      <Paper
-        elevation={10}
+      <Table
         sx={{ m: 5, mt: 8, color: "white", bgcolor: "black", width: "300px" }}
       >
-        <TableCell>
-          <Typography gutterBottom={true} variant="button">
-            Total Balance:
-          </Typography>
-        </TableCell>
-        <TableCell align="center" sx={{ color: "yellow", bgcolor: "black" }}>
-          <Typography gutterBottom={true} variant="h6">
-            $ {bal.balance}
-          </Typography>
-        </TableCell>
-      </Paper>
+        <TableHead>
+          <TableRow>
+            <TableCell>
+              <Typography
+                gutterBottom={true}
+                variant="button"
+                sx={{ color: "white" }}
+              >
+                Total Balance:
+              </Typography>
+            </TableCell>
+            <TableCell align="center" sx={{ color: "yellow" }}>
+              <Typography gutterBottom={true} variant="h6">
+                $ {bal.balance}
+              </Typography>
+            </TableCell>
+          </TableRow>
+        </TableHead>
+      </Table>
     </>
   );
 }
