@@ -1,5 +1,4 @@
 const db = require("../db");
-const cookie = require('cookie');
 
 const createOperation = async (req, res) => {
     
